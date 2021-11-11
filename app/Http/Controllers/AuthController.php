@@ -24,6 +24,29 @@ class AuthController extends Controller
 		$this->middleware('guest')->except('logout');
 	}
 
+	public function login(Request $request)
+	{
+		$email = $request->email;
+		$password = $request->password;
+
+		$user = User::where('email', $email)->first();
+
+		if ($user) {
+			if ($user->google_id == null) {
+				return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Harap aktivasi email terlebih dahulu!', 'error')</script>");
+			} else {
+				if (password_verify($password, $user->password)) {
+					Session::put('logged_in', $user);
+					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Berhasil login!', 'success')</script>");
+				} else {
+					return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Password salah!', 'error')</script>");
+				}
+			}
+		} else {
+			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun tidak terdaftar!', 'error')</script>");
+		}
+	}
+
 	public function register(Request $request)
 	{
 		$nama_lengkap = $request->nama_lengkap;
@@ -32,27 +55,34 @@ class AuthController extends Controller
 		$password = password_hash($request->password, PASSWORD_DEFAULT);
 		$token = base64_encode(md5(sha1(random_bytes(10))));
 
-		$request->validate([
-			'email' => 'unique:users|email',
-			'telepon' => 'required',
-			'nama_lengkap' => 'required'
-		]);
+		$user = User::where('email', $email)->first();
 
-		PasswordReset::create([
-			'email' => $email,
-			'token' => $token
-		]);
+		if ($user) {
+			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun tidak terdaftar!', 'error')</script>");
+		} else {
+			$request->validate([
+				'email' => 'unique:users|email',
+				'telepon' => 'required',
+				'nama_lengkap' => 'required'
+			]);
 
-		User::create([
-			'nama_lengkap' => $nama_lengkap,
-			'email' => $email,
-			'password' => $password,
-			'telepon' => $telepon
-		]);
+			PasswordReset::create([
+				'email' => $email,
+				'token' => $token,
+				'time' => time()
+			]);
 
-		$this->_sendEmail($token, 'verify');
+			User::create([
+				'nama_lengkap' => $nama_lengkap,
+				'email' => $email,
+				'password' => $password,
+				'telepon' => $telepon
+			]);
 
-		return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Registrasi sukses, harap periksa email anda!', 'success')</script>");
+			$this->_sendEmail($token, 'verify');
+
+			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Registrasi sukses, harap periksa email anda!', 'success')</script>");
+		}
 	}
 
 	public function verify()
@@ -66,12 +96,12 @@ class AuthController extends Controller
 			$user_token = PasswordReset::where('email', $email)->first();
 
 			if ($user_token) {
-				if (date("d-m-Y H:i:s", strtotime($user_token->created_at)) - date('d-m-Y H:i:s')) {
+				if (time() - $user_token->time < (60 * 60 * 24)) {
 					User::where('email', $user->email)->update([
 						'google_id' => 1
 					]);
 
-					PasswordReset::destroy($user_token->email);
+					PasswordReset::where('email', $user_token->email)->delete();
 
 					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun berhasil terverifikasi, silahkan login.', 'success')</script>");
 				} else {

@@ -7,7 +7,8 @@
                     <div class="login-block-header text-center">
                         <img src="https://plazafood.id/assets/front/images/food.svg" alt="Login" class="d-icon">Login
                     </div>
-                    <form action="https://plazafood.id/login" name="login_form" id="login_form" class="form-horizontal" method="post" accept-charset="utf-8">
+                    <form action="/auth/login" name="login_form" id="login_form" class="form-horizontal" method="post" accept-charset="utf-8">
+                        @csrf
                         <div class="form-group">
                             <input type="email" name="email" value="" id="lemail" class="form-control form-control-lg" placeholder="Email"  />
                         </div>
