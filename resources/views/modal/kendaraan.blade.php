@@ -4,7 +4,7 @@
             <div class="modal-body">
                 <div class="login-block">
                     <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
-                    <div class="login-block-header text-center btn btn-block" style="color: white; background-color: #dc3432; cursor: default;">Tambah Kendaraan</div>
+                    <div class="login-block-header text-center">Tambah Kendaraan</div>
                     <form action="/cart/add_kendaraan" name="kendaraan_form" id="kendaraan_form" class="form-horizontal" method="post" accept-charset="utf-8">
 
                         <div class="form-group">
