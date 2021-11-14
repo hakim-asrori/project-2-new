@@ -17,8 +17,10 @@
 
 
     <script src="/assets/front/js/jquery-3.3.1.min.js"></script>
-    <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script> -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>    
     <style>
         html {
             scroll-behavior: smooth;
@@ -44,7 +46,6 @@
 
     @include('modal.load')
 
-    <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>    
 
     <script src="/assets/front/js/bootstrap.min.js"></script>
     <script src="/assets/front/js/search-box.js"></script>
@@ -62,26 +63,6 @@
     <script src="/assets/front/js/ResizeSensor.min.js" type="text/javascript"></script>
     <script src="/assets/front/js/theia-sticky-sidebar.min.js" type="text/javascript"></script>
     <script src="/assets/front/js/validate.js" type="text/javascript"></script>
-
-    <script type="text/javascript">
-        $( document ).ready(function() {
-            $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
-        });
-
-        function show_popup(type) {
-            $("#login-modal").modal('hide');
-            $("#register-modal").modal('hide');
-            $("#forgot-pwd-modal").modal('hide');
-
-            if (type=='login') {
-                $("#login-modal").modal('show');
-            } else if (type=='signup') {
-                $("#register-modal").modal('show');
-            } else if (type=='forgot_pwd') {
-                $("#forgot-pwd-modal").modal('show');
-            }
-        }
-    </script>
 
 </body>
 </html>

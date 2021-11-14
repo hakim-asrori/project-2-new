@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Models\Kendaraan;
+
+use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,18 +18,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('template.first');
+	$kendaraan = Kendaraan::all();
+	return view('template.first', compact('kendaraan'));
 });
- 
+
 // Route Authentication
-Route::post('/auth/login', [App\Http\Controllers\AuthController::class, 'login']);
-Route::post('/auth/register', [App\Http\Controllers\AuthController::class, 'register']);
+Route::post('/auth/login', [AuthController::class, 'login']);
+Route::post('/auth/register', [AuthController::class, 'register']);
 
 // Route Google
-Route::get('/auth/verify', [App\Http\Controllers\AuthController::class, 'verify']);
-Route::get('/auth/google', [App\Http\Controllers\AuthController::class, 'google']);
-Route::get('/auth/google/callback', [App\Http\Controllers\AuthController::class, 'google_callback']);
-Route::get('/auth/logout', [App\Http\Controllers\AuthController::class, 'logout']);
+Route::get('/auth/verify', [AuthController::class, 'verify']);
+Route::get('/auth/google', [AuthController::class, 'google']);
+Route::get('/auth/google/callback', [AuthController::class, 'google_callback']);
+Route::get('/auth/logout', [AuthController::class, 'logout']);
 
 // Route Kendaraan
-Route::resource('/kendaraan', App\Http\Controllers\KendaraanController::class)->middleware('otentikasi');
+// Route::get('/kendaraan', [KendaraanController::class, ''])
+Route::resource('kendaraan', KendaraanController::class)->middleware('otentikasi');

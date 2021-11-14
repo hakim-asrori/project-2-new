@@ -103,6 +103,8 @@ class AuthController extends Controller
 
 					PasswordReset::where('email', $user_token->email)->delete();
 
+					mkdir("../storage/app/public/".md5($user->nama_lengkap));
+
 					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun berhasil terverifikasi, silahkan login.', 'success')</script>");
 				} else {
 					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun gagal verifikasi, token expired!', 'error')</script>");
@@ -163,6 +165,9 @@ class AuthController extends Controller
 
 				Auth::login($createUser);
 				Session::put('logged_in', $createUser);
+
+				mkdir("../storage/app/public/".md5($user->getName()));
+
 				return redirect('/');
 			}
 

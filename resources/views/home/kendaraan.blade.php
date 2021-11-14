@@ -1,28 +1,39 @@
 <div class="col-sm-6 items-block">
-	<div class="col-sm-6">
-		<div class="cs-card mb-3 cs-product-card">
-
-			<img src="https://plazafood.id/uploads/item_images/item_856786.jpg" alt="Sports drink" class="img-responsive" title="Sports drink">
-			<div class="cs-card-content clearfix">
-
-				<div class="pull-left">
-					<h4 title="Sports drink">Sports drink</h4>
-					<p>Rp.300.00</p>
-				</div>
-
-
-				<div class="pull-right">
-					<form id="item_form_856786">
-
-						<input type="hidden" id="itemFrom856786" value="items">
-						<input type="hidden" id="selected_item_id856786" value="856786">
-						<input type="hidden" id="selected_menu_id856786" value="13">
-						<input type="hidden" id="selected_item_cost856786" value="300.00">
-					</form>
-
-					<a href="javascript:void(0);" onclick="addToCart('856786')" class="btn btn-sm btn-round btn-primary card-btn">Add to cart</a>
-				</div>
-
+	<div class="wrapper">
+		<div class="section">
+			<div class="category-title mb-2">Kendaraan</div>
+			<div class="row">
+				<?php foreach($kendaraan as $k) { ?>
+					<div class="col-sm-6">
+						<div class="cs-card mb-3 cs-product-card">
+							<img src="/storage/{!! $k->gambar !!}" alt="{!! $k->nama_kendaraan !!}" class="img-responsive" title="{!! $k->nama_kendaraan !!}">
+							<div class="cs-card-content clearfix">
+								<div class="pull-left">
+									<h4 title="{!! $k->nama_kendaraan !!}">{!! $k->nama_kendaraan !!}</h4>
+									<p>Rp. {!! number_format($k->harga,0,',','.') !!}</p>
+									<p>Jumlah {!! $k->jumlah !!}</p>
+								</div>
+								<div class="pull-right">
+									<?php 
+									if (Session::get('logged_in')) { ?>
+										<form id="kendaraan_form_{!! $k->id !!}">
+											<input type="hidden" id="itemFrom{!! $k->id !!}" value="items">
+											<input type="hidden" id="selected_item_id{!! $k->id !!}" value="{!! $k->id !!}">
+											<input type="hidden" id="selected_menu_id{!! $k->id !!}" value="13">
+											<input type="hidden" id="selected_item_cost{!! $k->id !!}" value="84.00">
+										</form>
+										<a href="javascript:void(0);" class="btn btn-sm btn-round btn-primary card-btn">Pesan</a>
+										<?php 
+									} else { ?>
+										<a onclick="show_popup('login')" class="btn btn-sm btn-round btn-primary card-btn">Pesan</a>
+										<?php 
+									}
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

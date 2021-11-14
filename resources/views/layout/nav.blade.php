@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </button>
 
-                        <a class="navbar-brand" href="https://plazafood.id/"><img class="img-responsive flogo" src="https://plazafood.id/uploads/logo/site_logo.png"alt="FoodCourt">
+                        <a class="navbar-brand" href="/"><img class="img-responsive flogo" src="https://plazafood.id/uploads/logo/site_logo.png"alt="FoodCourt">
                         </a>
                     </div>
                 </div>
@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Session;
                             <?php if (Session::get('logged_in')) { ?>
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/kendaraan">Kendaraan</a></li>
+                                <li><a href="/pesanan">Pesanan</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown"><img src="/assets/front/images/user.png" class="nav-profile-img" alt="Your Account"> <?= Session::get('logged_in')['nama_lengkap'] ?>                
                                         <span class="fa fa-angle-down"></span>

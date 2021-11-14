@@ -7,10 +7,6 @@
 		<div id="fc-cart-div">
 		</div>
 
-		<div class="checkout-btn">
-			<a href="/cart/index" class="btn btn-primary btn-block btn-checkout"> Pesan </a>
-		</div>
-
 	</div>
 
 </div>
