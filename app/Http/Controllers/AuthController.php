@@ -57,9 +57,7 @@ class AuthController extends Controller
 
 		$user = User::where('email', $email)->first();
 
-		if ($user) {
-			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun tidak terdaftar!', 'error')</script>");
-		} else {
+		if (empty($user)) {
 			$request->validate([
 				'email' => 'unique:users|email',
 				'telepon' => 'required',
@@ -82,6 +80,8 @@ class AuthController extends Controller
 			$this->_sendEmail($token, 'verify');
 
 			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Registrasi sukses, harap periksa email anda!', 'success')</script>");
+		} else {
+			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun sudah terdaftar!', 'error')</script>");
 		}
 	}
 

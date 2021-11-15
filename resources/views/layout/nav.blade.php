@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Session;
                             <i class="fa fa-bars" aria-hidden="true"></i>
                         </button>
 
-                        <a class="navbar-brand" href="/"><img class="img-responsive flogo" src="https://plazafood.id/uploads/logo/site_logo.png"alt="FoodCourt">
+                        <a class="navbar-brand" href="/"><img class="img-responsive flogo" src="/assets/image/abu2.png"alt="FoodCourt">
                         </a>
                     </div>
                 </div>

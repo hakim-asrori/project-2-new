@@ -35,3 +35,4 @@ Route::get('/auth/logout', [AuthController::class, 'logout']);
 // Route Kendaraan
 // Route::get('/kendaraan', [KendaraanController::class, ''])
 Route::resource('kendaraan', KendaraanController::class)->middleware('otentikasi');
+Route::post('kendaraan/{id}/pesan_{invoice}', [KendaraanController::class, 'pesan'])->middleware('otentikasi');

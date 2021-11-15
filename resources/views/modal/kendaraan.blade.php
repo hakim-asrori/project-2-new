@@ -59,7 +59,7 @@
                         </div>
 
                         <div class="form-group">
-                            <img id="img" src="">
+                            <img id="img" src="" height="250">
                         </div>
 
                         <div class="form-group">

@@ -20,7 +20,7 @@
 						<div class="cs-card-content clearfix">
 							<div class="pull-left">
 								<h4 title="Sports drink">{!! $kendaraan->nama_kendaraan !!}</h4>
-								<p>{!! $kendaraan->harga !!}</p>
+								<p>Rp. {!! number_format($kendaraan->harga,0,',','.') !!}</p>
 							</div>
 							<div class="pull-right">
 								<a class="btn btn-sm btn-round btn-2warning card-btn" data-toggle="modal" data-target="#edit-kendaraan-modal" data-id="{!! $kendaraan->id !!}" id="edit">Edit</a>

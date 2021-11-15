@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 use App\Models\User;
+use App\Models\Pesanan;
 use App\Models\Kendaraan;
 
 class KendaraanController extends Controller
@@ -119,6 +120,25 @@ class KendaraanController extends Controller
             ]);
             return redirect('/kendaraan')->with("message2", '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">×</a><strong>Wooww!</strong> Data berhasil diubah.</div>');
         }
+    }
+
+    public function pesan($id, $invoice)
+    {
+        $kendaraan = Kendaraan::find($id)->first();
+        $invoice = Pesanan::where('invoice', $invoice)->first();
+        $invoice = '';
+
+        if ($invoice) {
+            $invoice = mt_rand(10000000,99999999);
+        }
+
+        Pesanan::create([
+            'id_user' => Session::get('logged_in')['id'],
+            'id_kendaraan' => $kendaraan->id,
+            'invoice' => $invoice
+        ]);
+
+        echo "<script>location.href='https://api.whatsapp.com/send?phone=".$kendaraan->user->telepon."&text=Order Lewat App Silihin %0A%0AInvoice: ".$invoice."%0ANama Kendaraan: ".$kendaraan->nama_kendaraan."%0AHarga: ".$kendaraan->harga."%0A%0ASilahkan tanyakan jika ada kebutuhan lainnya...'</script>";
     }
 
 

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 
-                <img class="img-responsive footer-logo" src="/assets/front/images/secondary_site_logo.png" alt="FoodCourt">
+                <img class="img-responsive footer-logo" src="/assets/image/abu2.png" alt="FoodCourt">
                 <p class="footer-text">we are the world class food providers with the highest quality of food services</p>
 
                 <div class="ct-social">
