@@ -2,7 +2,7 @@
 use Illuminate\Support\Facades\Session;
 ?>
 <div class="navbar-wrapper">
-    <nav class="navbar navbar-static-top ct-navbar-statictop fc-nav-bar {!! (Session::get('logged_in')) ? 'navbar-secondary' : '' !!}">
+    <nav class="navbar navbar-static-top ct-navbar-statictop fc-nav-bar navbar-secondary">
         <div class="container">
             <div class="row">
                 <div class="ct-logo">

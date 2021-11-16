@@ -107,13 +107,54 @@ class AuthController extends Controller
 
 					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun berhasil terverifikasi, silahkan login.', 'success')</script>");
 				} else {
-					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun gagal verifikasi, token expired!', 'error')</script>");
+					return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, token expired!', 'error')</script>");
 				}
 			} else {
-				return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun gagal verifikasi, token salah!', 'error')</script>");
+				return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, token salah!', 'error')</script>");
 			}
 		} else {
-			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun gagal verifikasi, email salah!', 'error')</script>");
+			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, email salah!', 'error')</script>");
+		}
+	}
+
+	public function forgotPassword(Request $request) {
+		$user = User::where('email', $request->email)->first();
+
+		if ($user) {
+			$token = base64_encode(md5(sha1(random_bytes(10))));
+
+			PasswordReset::create([
+				'email' => $user->email,
+				'token' => $token,
+				'time' => time()
+			]);
+
+
+			$this->_sendEmail($token, 'forgot');
+
+			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Reset password berhasil, silahkan lihat email anda.', 'success')</script>");
+		} else {
+			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Email tidak terdaftar!', 'error')</script>");
+		}
+	}
+
+	public function reset()
+	{
+		$email = $_GET['email'];
+		$token = $_GET['token'];
+
+		$user = User::where('email', $email)->first();
+
+		if ($user) {
+			$user_token = PasswordReset::where('token', $token)->first();
+
+			if ($user_token) {
+				return view('mail.reset_form', compact("user"));
+			} else {
+				return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, token salah!', 'error')</script>");
+			}
+		} else {
+			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, email salah!', 'error')</script>");
 		}
 	}
 
@@ -122,7 +163,7 @@ class AuthController extends Controller
 		if ($type == "verify") {
 			\Mail::to($_POST['email'])->send(new \App\Mail\SendMail($token));
 		} elseif ($type == "forgot") {
-			\Mail::to($_POST['email'])->send(new \App\Mail\Forgot_mail($token));
+			\Mail::to($_POST['email'])->send(new \App\Mail\Resetmail($token));
 		} else {
 			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Error.', 'error')</script>");
 		}

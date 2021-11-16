@@ -27,6 +27,8 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/register', [AuthController::class, 'register']);
 
 // Route Google
+Route::post('/auth/forgot-password', [AuthController::class, 'forgotPassword']);
+Route::get('/auth/reset', [AuthController::class, 'reset']);
 Route::get('/auth/verify', [AuthController::class, 'verify']);
 Route::get('/auth/google', [AuthController::class, 'google']);
 Route::get('/auth/google/callback', [AuthController::class, 'google_callback']);
