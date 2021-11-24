@@ -24,7 +24,10 @@ class KendaraanController extends Controller
 
     public function create()
     {
-        //
+        // DataPengurus::create([
+        //     "divisi" => $request->divisi_sebura,
+        //     "gambar" => ""
+        // ])
     }
 
 
@@ -66,7 +69,11 @@ class KendaraanController extends Controller
 
     public function show($id)
     {
-        //
+        $kendaraan = Kendaraan::find($id);
+        return response()->json([
+            'data' => $kendaraan,
+            'nama_lengkap' => $kendaraan->user->nama_lengkap
+        ]);
     }
 
 
@@ -125,20 +132,22 @@ class KendaraanController extends Controller
     public function pesan($id, $invoice)
     {
         $kendaraan = Kendaraan::find($id)->first();
-        $invoice = Pesanan::where('invoice', $invoice)->first();
-        $invoice = '';
+        $invoice2 = Pesanan::where('invoice', $invoice)->first();
+        $invoice3 = '';
 
-        if ($invoice) {
-            $invoice = mt_rand(10000000,99999999);
+        if ($invoice2) {
+            $invoice3 = mt_rand(10000000,99999999);
+        } else {
+            $invoice3 = $invoice;
         }
 
         Pesanan::create([
             'id_user' => Session::get('logged_in')['id'],
             'id_kendaraan' => $kendaraan->id,
-            'invoice' => $invoice
+            'invoice' => $invoice3
         ]);
 
-        echo "<script>location.href='https://api.whatsapp.com/send?phone=".$kendaraan->user->telepon."&text=Order Lewat App Silihin %0A%0AInvoice: ".$invoice."%0ANama Kendaraan: ".$kendaraan->nama_kendaraan."%0AHarga: ".$kendaraan->harga."%0A%0ASilahkan tanyakan jika ada kebutuhan lainnya...'</script>";
+        echo "<script>location.href='https://api.whatsapp.com/send?phone=".$kendaraan->user->telepon."&text=Order Lewat App Silihin %0A%0ADari : ".Session::get('logged_in')['nama_lengkap']."%0AInvoice: ".$invoice3."%0ANama Kendaraan: ".$kendaraan->nama_kendaraan."%0AHarga: Rp. ".rupiah($kendaraan->harga)."%0A%0ASilahkan tanyakan jika ada kebutuhan lainnya...'</script>";
     }
 
 
@@ -147,8 +156,12 @@ class KendaraanController extends Controller
         $kendaraan = Kendaraan::where('id', $id)->first();
 
         Storage::delete('/public/'.$kendaraan->gambar);
-        Kendaraan::destroy($kendaraan->id);
+        $cek = Kendaraan::destroy($kendaraan->id);
 
-        return redirect('/kendaraan')->with("message2", '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">×</a><strong>Wooww!</strong> Data berhasil dihapus.</div>');
+        if ($cek) {
+            echo 1;
+        } else {
+            echo 2;
+        }
     }
 }

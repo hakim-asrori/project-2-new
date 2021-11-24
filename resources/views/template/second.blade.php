@@ -22,14 +22,22 @@
 
     <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>    
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 
 </head>
 
 <body>
+    <?php if (Session::get('logged_in')['telepon']==''): ?>
+        <script src="/assets/front/js/bootstrap.min.js"></script>
+        @include('modal.telepon')
+        <script>
+            $("#telepon-modal").modal("show")
+        </script>
+    <?php endif ?>
+
     <?php if (session('message')): ?>
         <?= session('message') ?>
     <?php endif ?>

@@ -20,15 +20,12 @@
 						<div class="cs-card-content clearfix">
 							<div class="pull-left">
 								<h4 title="Sports drink">{!! $kendaraan->nama_kendaraan !!}</h4>
-								<p>Rp. {!! number_format($kendaraan->harga,0,',','.') !!}</p>
+								<p>Rp. {!! rupiah($kendaraan->harga) !!}</p>
 							</div>
 							<div class="pull-right">
 								<a class="btn btn-sm btn-round btn-2warning card-btn" data-toggle="modal" data-target="#edit-kendaraan-modal" data-id="{!! $kendaraan->id !!}" id="edit">Edit</a>
-								<form action="/kendaraan/{!! $kendaraan->id !!}" method="post" style="display: inline" onsubmit="return false;" id="delete">
-									@csrf
-									@method('delete')
-									<button class="btn btn-sm btn-round btn-2danger card-btn" onclick="konfirmasi('{!! $kendaraan->nama_kendaraan !!}')">Hapus</button>
-								</form>
+								@method("delete")
+								<button class="btn btn-sm btn-round btn-2danger card-btn" onclick="konfirmasi('{!! $kendaraan->nama_kendaraan !!}', {!! $kendaraan->id !!})">Hapus</button>
 							</div>
 						</div>
 					</div>
@@ -40,8 +37,10 @@
 
 @include('modal.kendaraan')
 
+{{ csrf_field() }}
+
 <script>
-	function konfirmasi(nama) {
+	function konfirmasi(nama, id) {
 		swal({
 			title: "Apakah anda yakin?",
 			text: "Data " + nama + " akan dihapus!",
@@ -51,12 +50,25 @@
 		})
 		.then((willDelete) => {
 			if (willDelete) {
-				document.getElementById('delete').onsubmit = false;
+				$.ajax({
+					url: "/kendaraan/"+id,
+					type: "post",
+					data: {_method: 'delete', id: id, _token: $("input[name='_token']").val()},
+					success: function (response) {
+						if (response == 1) {
+							swal("Wooww!", "Data anda berhasil dihapus", "success");
+							location.reload();
+						} else {
+							swal("Ooops", "Data gagal terhapus!", "error");
+						}
+					}
+				});
 			} else {
 				swal("Data anda tidak terhapus");
 			}
 		});
 	}
+
 	$(document).ready(function () {
 		$('body').on('click', '#edit', function (event) {
 			event.preventDefault();

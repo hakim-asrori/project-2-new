@@ -16,7 +16,7 @@
                     <a href="https://www.linkedin.com/uas/login" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                 </div>
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
+            <!-- <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6">
                 <h4 class="footer-head">Accepted Payments</h4>
                 <ul class="cs-footer-links">
                     <li class="dropdown ct-lang">
@@ -32,7 +32,7 @@
                         <img width="48px" height="24px" src="/uploads/card_images/thumbs/card_957.png">
                     </li>
                 </ul>
-            </div>
+            </div> -->
             <div class="col-lg-2 col-md-4 col-sm-6 col-xs-6">
                 <h4 class="footer-head">our links</h4>
                 <ul class="cs-footer-links">
@@ -133,3 +133,7 @@
         </div>
     </div>
 </section>
+
+<script>
+    
+</script>

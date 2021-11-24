@@ -51,7 +51,7 @@ class AuthController extends Controller
 	{
 		$nama_lengkap = $request->nama_lengkap;
 		$email = $request->email;
-		$telepon = $request->telepon;
+		$telepon = handphone($request->telepon);
 		$password = password_hash($request->password, PASSWORD_DEFAULT);
 		$token = base64_encode(md5(sha1(random_bytes(10))));
 
@@ -214,6 +214,25 @@ class AuthController extends Controller
 
 		} catch (Exception $exception) {
 			dd($exception->getMessage());
+		}
+	}
+
+	public function telepon(Request $request)
+	{
+		$user = User::where('email', Session::get('logged_in')['email'])->first();
+
+		if ($user) {
+			$cek = User::where('id', $user->id)->update([
+				'telepon' => $request->telepon
+			]);
+
+			if ($cek) {
+				echo 1;
+			} else {
+				echo 1;
+			}
+		} else {
+			echo 1;
 		}
 	}
 

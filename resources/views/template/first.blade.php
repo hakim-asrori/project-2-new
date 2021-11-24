@@ -20,14 +20,23 @@
     <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 
 </head>
 
 <body>
+    <?php if (Session::get('logged_in')): ?>
+        <?php if (Session::get('logged_in')['telepon']==''): ?>
+            <script src="/assets/front/js/bootstrap.min.js"></script>
+            @include('modal.telepon')
+            <script>
+                $("#telepon-modal").modal("show")
+            </script>
+        <?php endif ?>
+    <?php endif ?>
     <?php if (session('message')): ?>
         <?= session('message') ?>
     <?php endif ?>
@@ -42,18 +51,20 @@
 
                 @include('home.kendaraan')
 
-                @include('layout.checkout')
+                <?php if (Session::get('logged_in')): ?>
+                    @include('layout.checkout')
+                <?php endif ?>
             </div>
         </div>
-
+        @include('modal.detail')
         @include('layout.footer')
     </div>
 
     @include('modal.load')
 
+    <script src="/assets/front/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>    
 
-    <script src="/assets/front/js/bootstrap.min.js"></script>
     <script src="/assets/front/js/search-box.js"></script>
     <script src="/assets/front/js/bootstrap.offcanvas.js"></script>
 

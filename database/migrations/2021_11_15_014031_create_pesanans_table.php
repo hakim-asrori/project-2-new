@@ -18,6 +18,8 @@ class CreatePesanansTable extends Migration
             $table->integer('id_user');
             $table->integer('id_kendaraan');
             $table->string('invoice');
+            $table->integer('persetujuan')->nullable();
+            $table->integer('selesai')->nullable();
             $table->timestamps();
         });
     }
