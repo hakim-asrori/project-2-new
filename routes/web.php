@@ -39,7 +39,6 @@ Route::prefix('auth')->group(function () {
 	Route::get('/logout', [AuthController::class, 'logout']);
 });
 
-
 // Route Kendaraan
 Route::resource('kendaraan', KendaraanController::class)->middleware('otentikasi');
 Route::get('kendaraan/{id}/show', [KendaraanController::class, 'show']);

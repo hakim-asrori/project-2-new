@@ -29,6 +29,7 @@
 </head>
 
 <body>
+    <div id="pesan"></div>
     <?php if (Session::get('logged_in')): ?>
         <?php
         $user = User::where('email', Session::get('logged_in')['email'])->first();
