@@ -6,6 +6,7 @@ function handphone($nohp)
 	$nohp = str_replace("(","",$nohp);
 	$nohp = str_replace(")","",$nohp);
 	$nohp = str_replace(".","",$nohp);
+	$nohp = str_replace("-","",$nohp);
 
 	if (!preg_match('/[^+0-9]/', trim($nohp))) {
 		if (substr(trim($nohp), 0, 3) == "+62") {
@@ -16,6 +17,14 @@ function handphone($nohp)
 
 		return $nohp;
 	}
+}
+
+function reHandphone($nohp) {
+	if (substr(trim($nohp), 0, 2) == "62") {
+		$nohp = '0'.substr(trim($nohp), 2);
+	}
+
+	return $nohp;
 }
 
 function rupiah($value)

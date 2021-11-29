@@ -1,3 +1,4 @@
+<?php use App\Models\User; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -18,18 +19,21 @@
 
     <script src="/assets/front/js/jquery-3.3.1.min.js"></script>
     <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 
 </head>
 
 <body>
     <?php if (Session::get('logged_in')): ?>
-        <?php if (Session::get('logged_in')['telepon']==''): ?>
+        <?php
+        $user = User::where('email', Session::get('logged_in')['email'])->first();
+        ?>
+        <?php if ($user->telepon==''): ?>
             <script src="/assets/front/js/bootstrap.min.js"></script>
             @include('modal.telepon')
             <script>

@@ -1,3 +1,4 @@
+<?php use App\Models\User; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -22,15 +23,18 @@
 
     <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>    
     <style>
-    html {
-        scroll-behavior: smooth;
-    }
-</style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 
 </head>
 
 <body>
-    <?php if (Session::get('logged_in')['telepon']==''): ?>
+    <?php
+    $user = User::where('email', Session::get('logged_in')['email'])->first();
+    ?>
+    <?php if ($user->telepon==''): ?>
         <script src="/assets/front/js/bootstrap.min.js"></script>
         @include('modal.telepon')
         <script>

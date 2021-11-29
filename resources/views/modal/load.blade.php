@@ -14,7 +14,7 @@
 			let telepon = $("input#telepon").val().trim();
 
 			$.ajax({
-				url: '/auth/telepon',
+				url: '/profile/telepon',
 				type: 'post',
 				data: {telepon: telepon},
 				success: function (response) {
@@ -30,15 +30,3 @@
 		})
 	})
 </script>
-<div class="form-group">
-	<label>Jurusan</label>
-	<select name="asd" id="asd">
-		<option value="">Belum ada data jabatan</option>
-		<?php foreach ($variable as $key => $value): ?>
-			
-		<?php endforeach ?>
-		@foreach($variable as $key => $value)
-
-		@endforeach
-	</select>
-</div>

@@ -22,8 +22,3 @@
         </div>
     </div>
 </div>
-<select name="" id="">
-    <?php for ($i=2020; $i < date(format); $i++) { ?>
-        
-    <?php } ?>
-</select>

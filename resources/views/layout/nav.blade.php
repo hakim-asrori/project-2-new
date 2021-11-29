@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Session;
                                         <span class="fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/my-profile"><i class="pe pe-7s-user"></i> Profil Saya</a></li>
+                                        <li><a href="/profile"><i class="pe pe-7s-user"></i> Profil Saya</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="/auth/logout"><i class="pe pe-7s-next-2"></i>logout</a></li>
                                     </ul>
