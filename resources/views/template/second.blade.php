@@ -30,6 +30,7 @@
 </head>
 
 <body>
+    <div id="pesan"></div>
     <?php if (Session::get('logged_in')['telepon']==''): ?>
         <script src="/assets/front/js/bootstrap.min.js"></script>
         @include('modal.telepon')

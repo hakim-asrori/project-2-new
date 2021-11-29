@@ -5,7 +5,6 @@
 @if (session('message2'))
 {!! session('message2') !!}
 @endif
-<div id="pesan"></div>
 <div class="cs-card cart-card card-show">
 	<div class="card-header bordered clearfix">
 		Daftar Pesanan

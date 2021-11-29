@@ -28,6 +28,7 @@
 </head>
 
 <body>
+    <div id="pesan"></div>
     <?php if (Session::get('logged_in')): ?>
         <?php if (Session::get('logged_in')['telepon']==''): ?>
             <script src="/assets/front/js/bootstrap.min.js"></script>

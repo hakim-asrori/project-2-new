@@ -219,6 +219,7 @@ class AuthController extends Controller
 
 	public function telepon(Request $request)
 	{
+		dd($request);
 		$user = User::where('email', Session::get('logged_in')['email'])->first();
 
 		if ($user) {
@@ -229,10 +230,10 @@ class AuthController extends Controller
 			if ($cek) {
 				echo 1;
 			} else {
-				echo 1;
+				echo 2;
 			}
 		} else {
-			echo 1;
+			echo 2;
 		}
 	}
 
