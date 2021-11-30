@@ -8,6 +8,8 @@ use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AjaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +22,7 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-	$kendaraan = Kendaraan::all();
-	return view('template.first', compact('kendaraan'));
+	return view('template.first');
 });
 
 // Route Auth
@@ -41,8 +42,8 @@ Route::prefix('auth')->group(function () {
 
 // Route Kendaraan
 Route::resource('kendaraan', KendaraanController::class)->middleware('otentikasi');
-Route::get('kendaraan/{id}/show', [KendaraanController::class, 'show']);
 Route::post('kendaraan/{id}/pesan_{invoice}', [KendaraanController::class, 'pesan'])->middleware('otentikasi');
+Route::get('/get/kendaraan-by-user', [KendaraanController::class, 'getByKendaraanUser']);
 
 // Route Pesanan
 Route::prefix('pesanan')->group(function() {
@@ -56,4 +57,15 @@ Route::prefix('profile')->group(function () {
 	Route::get('/', [ProfileController::class, 'index'])->middleware('otentikasi');
 	Route::patch('/', [ProfileController::class, 'profileUpdate'])->middleware('otentikasi');
 	Route::post('/telepon', [ProfileController::class, 'teleponUpdate'])->middleware('otentikasi');
+});
+
+Route::prefix('search')->group(function () {
+	Route::get('/', [SearchController::class, 'searchKendaraanAll']);
+	Route::get('/kendaraan', [SearchController::class, 'searchKendaraan']);
+});
+
+Route::prefix('get')->group(function () {
+	Route::get('/kendaraan-all', [AjaxController::class, 'getAllKendaraan']);
+	Route::get('/kendaraan-by-{id}', [AjaxController::class, 'getByKendaraanId']);
+	Route::post('/kendaraan-by', [AjaxController::class, 'getByKendaraan']);
 });

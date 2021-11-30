@@ -20,10 +20,10 @@
     <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 
 </head>
 
@@ -52,12 +52,16 @@
 
             <div class="row" >
                 @include('layout.search')
-
-                @include('home.kendaraan')
-
-                <?php if (Session::get('logged_in')): ?>
-                    @include('layout.checkout')
-                <?php endif ?>
+                <div class="col-sm-9 items-block">
+                    <div class="wrapper">
+                        <div class="section">
+                            <div class="category-title mb-2">Kendaraan</div>
+                            <div class="row">
+                                <div id="getKendaraan"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         @include('modal.detail')
@@ -84,6 +88,7 @@
     <script src="/assets/front/js/ResizeSensor.min.js" type="text/javascript"></script>
     <script src="/assets/front/js/theia-sticky-sidebar.min.js" type="text/javascript"></script>
     <script src="/assets/front/js/validate.js" type="text/javascript"></script>
+    <script src="/assets/front/js/function.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         $( document ).ready(function() {

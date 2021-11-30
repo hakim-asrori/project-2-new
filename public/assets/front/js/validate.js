@@ -221,6 +221,43 @@
 					form.submit();
 				}
 			});
+
+			$("#password_form").validate({
+				ignore: "",
+				rules: {
+					currentPassword: {
+						required: true
+					},
+					newPassword: {
+						required: true,
+						rangelength:[6,20]
+					},
+					confirmPassword: {
+						required: true,
+						rangelength:[6,20],
+						equalTo: "#newPassword"
+					}
+				},
+
+				messages: {
+					currentPassword: {
+						required: "Password lama wajib diisi!"
+					},
+					newPassword: {
+						required: "Password baru wajib diisi!",
+						rangelength: "Password minimal 6 panjangnya!"
+					},
+					confirmPassword: {
+						required: "Konfirmasi password wajib diisi!",
+						rangelength: "Password minimal 6 panjangnya!",
+						equalTo: "Konfirmasi password wajib sama dengan password baru!"
+					}
+				},
+
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
 		}
 	}
 

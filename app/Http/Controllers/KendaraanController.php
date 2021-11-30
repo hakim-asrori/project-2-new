@@ -14,17 +14,15 @@ class KendaraanController extends Controller
 {
     public function index()
     {
-        $user = User::where('email', Session::get('logged_in')['email'])->first();
-        $data = [
-            'kendaraan' => Kendaraan::where('id_user', $user->id)->get()
-        ];
-        return view('kendaraan.index', compact('data', 'user'));
+        return view('kendaraan.index');
     }
 
 
-    public function create()
+    public function getByKendaraanUser()
     {
-        
+        $user = User::where('email', Session::get('logged_in')['email'])->first();
+        $kendaraan = Kendaraan::where('id_user', $user->id)->get();
+        return view('kendaraan.view', compact('kendaraan', 'user'));
     }
 
 
@@ -44,7 +42,7 @@ class KendaraanController extends Controller
             $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($request->nama)));
             $extension = $request->gambar->extension();
             $gambar = time()."_".$slug.".".$extension;
-            $request->gambar->storeAs('public/'.(md5($user->email).'/kendaraan/'), $gambar);
+            $request->gambar->storeAs('public/'.(md5($user->id).'/kendaraan/'), $gambar);
             if ($request->file('gambar')->isValid()) {
                 Kendaraan::create([
                     'id_user' => $user->id,
@@ -52,7 +50,7 @@ class KendaraanController extends Controller
                     'harga' => $request->harga,
                     'jumlah' => $request->jumlah,
                     'keterangan' => $request->keterangan,
-                    'gambar' => md5($user->email).'/kendaraan/'.$gambar,
+                    'gambar' => md5($user->id).'/kendaraan/'.$gambar,
                 ]);
                 return redirect('/kendaraan')->with("message2", '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">×</a><strong>Wooww!</strong> Data berhasil ditambahkan.</div>');
             } else {
@@ -62,17 +60,6 @@ class KendaraanController extends Controller
             return redirect('/kendaraan')->with("message2", '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert">×</a><strong>Ooops!</strong> Gagal menyimpan data.</div>');
         }
     }
-
-
-    public function show($id)
-    {
-        $kendaraan = Kendaraan::find($id);
-        return response()->json([
-            'data' => $kendaraan,
-            'nama_lengkap' => $kendaraan->user->nama_lengkap
-        ]);
-    }
-
 
     public function edit($id)
     {

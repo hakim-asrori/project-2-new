@@ -1,7 +1,6 @@
 @extends('template/second')
 
 @section('content')
-<link href="/assets/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 @if (session('message2'))
 {!! session('message2') !!}
@@ -60,17 +59,5 @@
 		</form>
 	</div>
 </div>
-
-@include('modal.pesan')
-
-<script src="/assets/datatables/jquery.dataTables.min.js"></script>
-<script src="/assets/datatables/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-
-<script>
-	$(document).ready(function() {
-		$('#dataTable').DataTable();
-	});
-</script>
 
 @endsection()

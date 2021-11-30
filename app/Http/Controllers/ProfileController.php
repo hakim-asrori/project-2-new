@@ -28,13 +28,13 @@ class ProfileController extends Controller
                 $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($request->nama)));
                 $extension = $request->image->extension();
                 $image = time()."_".$slug.".".$extension;
-                $request->image->storeAs('public/'.(md5($this->getUser()->email).'/profile/'), $image);
+                $request->image->storeAs('public/'.(md5($this->getUser()->id).'/profile/'), $image);
                 if ($request->file('image')->isValid()) {
                     $cek = User::where("email", $this->getUser()->email)->update([
                         'nama_lengkap' => $request->nama_lengkap,
                         'telepon' => handphone($request->telepon),
                         'alamat' => $request->alamat,
-                        'image' => md5($this->getUser()->email).'/profile/'.$image,
+                        'image' => md5($this->getUser()->id).'/profile/'.$image,
                     ]);
 
                     if ($cek) {
