@@ -1,5 +1,4 @@
-(function($,W,D)
-{
+(function($,W,D) {
 	var JQUERY4U = {};
 	JQUERY4U.UTIL =
 	{
@@ -86,6 +85,135 @@
 					email: {
 						required: "Email harap di isi!",
 						email: "Harap masukan email yang valid!"
+					}
+				},
+
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
+
+			$("#profile_form").validate({
+				ignore: "",
+				rules: {
+					nama_lengkap: {
+						required: true
+					},
+					email: {
+						required: true
+					},
+					telepon: {
+						required: true
+					},
+					alamat: {
+						required: true,
+					},
+					image: {
+						accept: "image/*"
+					}
+				},
+
+				messages: {
+					nama_lengkap: {
+						required: "Nama lengkap harap di isi!"
+					},
+					email: {
+						required: "Email harap di isi!"
+					},
+					telepon: {
+						required: "No. telepon harap di isi!"
+					},
+					alamat: {
+						required: "Alamat harap di isi!"
+					},
+					image: {
+						accept: "Tipe file harus gambar (jpg, png, jpeg)"
+					}
+				},
+
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
+
+			$("#kendaraan_form").validate({
+				ignore: "",
+				rules: {
+					nama: {
+						required: true
+					},
+					harga: {
+						required: true
+					},
+					jumlah: {
+						required: true
+					},
+					keterangan: {
+						required: true
+					},
+					gambar: {
+						accept: "image/*"
+					}
+				},
+
+				messages: {
+					nama: {
+						required: "Nama wajib diisi!"
+					},
+					harga: {
+						required: "Harga wajib diisi!"
+					},
+					jumlah: {
+						required: "Jumlah wajib diisi!"
+					},
+					keterangan: {
+						required: "Keterangan wajib diisi!"
+					},
+					gambar: {
+						accept: "Tipe file harus gambar (jpg, png, jpeg)"
+					}
+				},
+
+				submitHandler: function(form) {
+					form.submit();
+				}
+			});
+
+			$("#edit_kendaraan_form").validate({
+				ignore: "",
+				rules: {
+					edit_nama: {
+						required: true
+					},
+					edit_harga: {
+						required: true
+					},
+					edit_jumlah: {
+						required: true
+					},
+					edit_keterangan: {
+						required: true
+					},
+					edit_gambar: {
+						accept: "image/*"
+					}
+				},
+
+				messages: {
+					edit_nama: {
+						required: "Nama wajib diisi!"
+					},
+					edit_harga: {
+						required: "Harga wajib diisi!"
+					},
+					edit_jumlah: {
+						required: "Jumlah wajib diisi!"
+					},
+					edit_keterangan: {
+						required: "Keterangan wajib diisi!"
+					},
+					edit_gambar: {
+						accept: "Tipe file harus gambar (jpg, png, jpeg)"
 					}
 				},
 

@@ -21,36 +21,52 @@ class ProfileController extends Controller
         return view('profile.index', compact('user'));
     }
 
-    public function create()
+    public function profileUpdate(Request $request)
     {
-        //
-    }
+        if ($this->getUser()) {
+            if ($request->hasFile('image')) {
+                $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($request->nama)));
+                $extension = $request->image->extension();
+                $image = time()."_".$slug.".".$extension;
+                $request->image->storeAs('public/'.(md5($this->getUser()->email).'/profile/'), $image);
+                if ($request->file('image')->isValid()) {
+                    $cek = User::where("email", $this->getUser()->email)->update([
+                        'nama_lengkap' => $request->nama_lengkap,
+                        'telepon' => handphone($request->telepon),
+                        'alamat' => $request->alamat,
+                        'image' => md5($this->getUser()->email).'/profile/'.$image,
+                    ]);
 
-    public function store(Request $request)
-    {
-        //
-    }
+                    if ($cek) {
+                        return redirect()->back()->with("message2", '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">×</a><strong>Wooww!</strong> Data berhasil disimpan.</div>');
+                    } else {
+                        return redirect()->back()->with("message2", '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert">×</a><strong>Ooops!</strong> Ada kesalahan saat menyimpan data.</div>');
+                    }
+                } else {
+                    return redirect()->back()->with("message2", '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert">×</a><strong>Ooops!</strong> Ada kesalahan saat menyimpan data.</div>');
+                }
+            } else {
+                $cek = User::where("email", $this->getUser()->email)->update([
+                    'nama_lengkap' => $request->nama_lengkap,
+                    'telepon' => handphone($request->telepon),
+                    'alamat' => $request->alamat
+                ]);
 
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
+                if ($cek) {
+                    return redirect()->back()->with("message2", '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">×</a><strong>Wooww!</strong> Data berhasil disimpan.</div>');
+                } else {
+                    return redirect()->back()->with("message2", '<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert">×</a><strong>Ooops!</strong> Ada kesalahan saat menyimpan data.</div>');
+                }
+            }
+        }
     }
 
     public function teleponUpdate(Request $request)
     {
         if ($this->getUser()) {
             $cek = User::where('email', $this->getUser()->email)->update([
-                'telepon' => handphone($request->telepon)
+                'telepon' => handphone($request->telepon),
+                'alamat' => $request->alamat
             ]);
 
             if ($cek) {
@@ -59,10 +75,5 @@ class ProfileController extends Controller
                 echo 2;
             }
         }
-    }
-
-    public function destroy($id)
-    {
-        //
     }
 }
