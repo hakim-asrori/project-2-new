@@ -1,4 +1,3 @@
-<?php use App\Models\User; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -32,9 +31,9 @@
 
 <body>
     <?php
-    $user = User::where('email', Session::get('logged_in')['email'])->first();
+    $user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();
     ?>
-    <?php if ($user->telepon==''): ?>
+    <?php if ($user->telepon=='' && $user->alamat==''): ?>
         <script src="/assets/front/js/bootstrap.min.js"></script>
         @include('modal.telepon')
         <script>

@@ -24,10 +24,7 @@ class KendaraanController extends Controller
 
     public function create()
     {
-        // DataPengurus::create([
-        //     "divisi" => $request->divisi_sebura,
-        //     "gambar" => ""
-        // ])
+        
     }
 
 
@@ -47,7 +44,7 @@ class KendaraanController extends Controller
             $slug = preg_replace('/[^a-z0-9]+/i', '-', trim(strtolower($request->nama)));
             $extension = $request->gambar->extension();
             $gambar = time()."_".$slug.".".$extension;
-            $request->gambar->storeAs('public/'.(md5($user->nama_lengkap).'/kendaraan/'), $gambar);
+            $request->gambar->storeAs('public/'.(md5($user->email).'/kendaraan/'), $gambar);
             if ($request->file('gambar')->isValid()) {
                 Kendaraan::create([
                     'id_user' => $user->id,
@@ -55,7 +52,7 @@ class KendaraanController extends Controller
                     'harga' => $request->harga,
                     'jumlah' => $request->jumlah,
                     'keterangan' => $request->keterangan,
-                    'gambar' => md5($user->nama_lengkap).'/kendaraan/'.$gambar,
+                    'gambar' => md5($user->email).'/kendaraan/'.$gambar,
                 ]);
                 return redirect('/kendaraan')->with("message2", '<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert">×</a><strong>Wooww!</strong> Data berhasil ditambahkan.</div>');
             } else {

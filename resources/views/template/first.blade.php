@@ -1,4 +1,3 @@
-<?php use App\Models\User; ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -32,13 +31,13 @@
     <div id="pesan"></div>
     <?php if (Session::get('logged_in')): ?>
         <?php
-        $user = User::where('email', Session::get('logged_in')['email'])->first();
+        $user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();
         ?>
-        <?php if ($user->telepon==''): ?>
+        <?php if ($user->telepon=='' && $user->alamat==''): ?>
             <script src="/assets/front/js/bootstrap.min.js"></script>
-            @include('modal.telepon')
+            @include('modal.profile')
             <script>
-                $("#telepon-modal").modal("show")
+                $("#profile-modal").modal("show")
             </script>
         <?php endif ?>
     <?php endif ?>

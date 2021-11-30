@@ -54,5 +54,6 @@ Route::prefix('pesanan')->group(function() {
 // Route Profile
 Route::prefix('profile')->group(function () {
 	Route::get('/', [ProfileController::class, 'index'])->middleware('otentikasi');
+	Route::patch('/', [ProfileController::class, 'profileUpdate'])->middleware('otentikasi');
 	Route::post('/telepon', [ProfileController::class, 'teleponUpdate'])->middleware('otentikasi');
 });

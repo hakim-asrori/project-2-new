@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Session;
+$user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();
 ?>
 <div class="navbar-wrapper">
     <nav class="navbar navbar-static-top ct-navbar-statictop fc-nav-bar navbar-secondary">
@@ -25,11 +26,12 @@ use Illuminate\Support\Facades\Session;
                                 <li><a href="/kendaraan">Kendaraan</a></li>
                                 <li><a href="/pesanan">Pesanan</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown"><img src="/assets/front/images/user.png" class="nav-profile-img" alt="Your Account"> <?= Session::get('logged_in')['nama_lengkap'] ?>                
+                                    <a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown"><img src="{!! ($user->image=='') ? '/assets/front/images/user.png' : '/storage/' . $user->image !!}" class="nav-profile-img" alt="<?= $user->nama_lengkap ?>"> <?= $user->nama_lengkap ?>                
                                         <span class="fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a href="/profile"><i class="pe pe-7s-user"></i> Profil Saya</a></li>
+                                        <li><a href="/profile/password"><i class="pe pe-7s-key"></i> Ubah Password</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="/auth/logout"><i class="pe pe-7s-next-2"></i>logout</a></li>
                                     </ul>
@@ -38,9 +40,6 @@ use Illuminate\Support\Facades\Session;
                                 <li><a class="btn btn nav-btn" href="javascript:void(0);" onclick="show_popup('login')">Login</a></li>
                                 <li><a class="btn btn nav-btn" href="javascript:void(0);" onclick="show_popup('signup')">Register</a></li>
                             <?php } ?>
-                            <li class="hidden-xs">
-                                <a class="nav-cart" href="https://plazafood.id/cart/index"><span><i class="fa fa-shopping-cart" aria-hidden="true"></i><span id="items_cnt" class="fc-count">0</span></span> </a>
-                            </li>
                         </ul>
                     </div>
                 </div>
