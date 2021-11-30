@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Session;
-$user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();
+
 ?>
 <div class="navbar-wrapper">
     <nav class="navbar navbar-static-top ct-navbar-statictop fc-nav-bar navbar-secondary">
@@ -21,12 +21,14 @@ $user = DB::table('users')->where('email', Session::get('logged_in')['email'])->
 
                     <div class="navbar-offcanvas navbar-offcanvas-touch navbar-right" id="ct-bootstrap-offcanvas">
                         <ul class="nav navbar-nav ct-list ">
-                            <?php if (Session::get('logged_in')) { ?>
+                            <?php
+                            if (Session::get('logged_in')) {
+                                $user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();?>
                                 <li><a href="/">Home</a></li>
                                 <li><a href="/kendaraan">Kendaraan</a></li>
                                 <li><a href="/pesanan">Pesanan</a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown"><img src="{!! ($user->image=='') ? '/assets/front/images/user.png' : '/storage/' . $user->image !!}" class="nav-profile-img" alt="<?= $user->nama_lengkap ?>"> <?= $user->nama_lengkap ?>                
+                                    <a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown"><img src="{!! ($user->image=='') ? '/assets/front/images/user.png' : '/storage/' . $user->image !!}" class="nav-profile-img" alt="<?= $user->nama_lengkap ?>"> <?= $user->nama_lengkap ?>
                                         <span class="fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu">
