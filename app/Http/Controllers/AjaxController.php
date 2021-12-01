@@ -13,14 +13,14 @@ class AjaxController extends Controller
     public function getAllKendaraan()
     {
         $kendaraan = Kendaraan::all();
-        return view('home.kendaraan', compact('kendaraan'));
+        return view('kendaraan.allkendaraan', compact('kendaraan'));
     }
 
     public function getByKendaraan(Request $request)
     {
         $kendaraan = Kendaraan::where("nama_kendaraan", "like", "%".$request->term."%")->get();
 
-        return view('home.kendaraan', compact('kendaraan'));
+        return view('kendaraan.allkendaraan', compact('kendaraan'));
     }
 
     public function getByKendaraanId($id = null)

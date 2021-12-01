@@ -4,9 +4,9 @@ foreach($kendaraan as $k) {
 	if ($k->jumlah != 0) { ?>
 		<div class="col-sm-4">
 			<div class="cs-card mb-3 cs-product-card">
-				<img src="/storage/{!! $k->gambar !!}" alt="{!! $k->nama_kendaraan !!}" class="img-responsive" title="{!! $k->nama_kendaraan !!}">
+				<img src="/storage/{!! $k->gambar !!}" alt="{!! $k->nama_kendaraan !!}" class="img-responsive" title="{!! $k->nama_kendaraan !!}" data-toggle="modal" data-target="#detail-modal" data-id="{!! $k->id !!}" id="detail">
 				<div class="cs-card-content clearfix">
-					<div class="pull-left">
+					<div class="pull-left" data-toggle="modal" data-target="#detail-modal" data-id="{!! $k->id !!}" id="detail">
 						<h4 title="[ {!! $k->user->nama_lengkap !!} ] {!! $k->nama_kendaraan !!}">[ {!! $k->user->nama_lengkap !!} ] {!! $k->nama_kendaraan !!}</h4>
 						<p>Rp. {!! rupiah($k->harga) !!}</p>
 						<p>Jumlah {!! $k->jumlah !!}</p>

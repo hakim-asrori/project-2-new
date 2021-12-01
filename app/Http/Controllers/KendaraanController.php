@@ -17,15 +17,6 @@ class KendaraanController extends Controller
         return view('kendaraan.index');
     }
 
-
-    public function getByKendaraanUser()
-    {
-        $user = User::where('email', Session::get('logged_in')['email'])->first();
-        $kendaraan = Kendaraan::where('id_user', $user->id)->get();
-        return view('kendaraan.view', compact('kendaraan', 'user'));
-    }
-
-
     public function store(Request $request)
     {
         $user = User::where('email', Session::get('logged_in')['email'])->first();
@@ -147,5 +138,12 @@ class KendaraanController extends Controller
         } else {
             echo 2;
         }
+    }
+
+    public function getByKendaraanUser()
+    {
+        $user = User::where('email', Session::get('logged_in')['email'])->first();
+        $kendaraan = Kendaraan::where('id_user', $user->id)->get();
+        return view('kendaraan.view', compact('kendaraan', 'user'));
     }
 }
