@@ -1,6 +1,6 @@
 @extends('template/second')
-<link href="/assets/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 @section('content')
+<link href="/assets/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 @if (session('message2'))
 {!! session('message2') !!}
@@ -35,9 +35,9 @@
 <script src="/assets/datatables/dataTables.bootstrap4.min.js"></script>
 
 <script>
-	$(document).ready(function() {
-		$('#dataTable').DataTable();
-	});
+	// $(document).ready(function() {
+		// $('#dataTable').DataTable();
+	// });
 </script>
 
 @endsection()

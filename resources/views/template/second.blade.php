@@ -20,7 +20,7 @@
     <!-- <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>    
+    <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>
     <style>
         html {
             scroll-behavior: smooth;
@@ -35,7 +35,7 @@
     ?>
     <?php if ($user->telepon=='' && $user->alamat==''): ?>
         <script src="/assets/front/js/bootstrap.min.js"></script>
-        @include('modal.telepon')
+        @include('modal.profile')
         <script>
             $("#telepon-modal").modal("show")
         </script>
