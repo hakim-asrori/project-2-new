@@ -18,7 +18,7 @@ foreach($kendaraan as $k) {
 							if (Session::get('logged_in')['id'] != $k->id_user) { ?>
 								<form action="/kendaraan/{!! $k->id !!}/pesan_{!! $invoice !!}" method="post">
 									@csrf
-									<button type="submit" class="btn btn-sm btn-round btn-primary card-btn">Pesan</button>
+									<button class="btn btn-sm btn-round btn-primary card-btn">Pesan</button>
 								</form>
 							<?php } ?>
 							<?php 

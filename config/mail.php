@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'smtp'),
+    // 'default' => env('MAIL_MAILER', 'smtp'),
+    'default' => 'smtp',
 
     /*
     |--------------------------------------------------------------------------
@@ -34,13 +35,23 @@ return [
     */
 
     'mailers' => [
+        // 'smtp' => [
+        //     'transport' => 'smtp',
+        //     'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+        //     'port' => env('MAIL_PORT', 587),
+        //     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+        //     'username' => env('MAIL_USERNAME', 'saneglos005@gmail.com'),
+        //     'password' => env('MAIL_PASSWORD', 'saneglos005@gmail.c'),
+        //     'timeout' => null,
+        //     'auth_mode' => null,
+        // ],
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME', 'saneglos005@gmail.com'),
-            'password' => env('MAIL_PASSWORD', 'saneglos005@gmail.c'),
+            'host' => 'smtp.gmail.com',
+            'port' => 587,
+            'encryption' => 'tls',
+            'username' => 'saneglos005@gmail.com',
+            'password' => 'saneglos005@gmail.c',
             'timeout' => null,
             'auth_mode' => null,
         ],
@@ -91,8 +102,12 @@ return [
     |
     */
 
+    // 'from' => [
+    //     'address' => env('MAIL_FROM_ADDRESS', 'saneglos005@gmail.com'),
+    //     'name' => env('MAIL_FROM_NAME', 'Example'),
+    // ],
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'saneglos005@gmail.com'),
+        'address' => 'saneglos005@gmail.com',
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 

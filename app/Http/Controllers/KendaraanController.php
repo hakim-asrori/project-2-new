@@ -106,7 +106,7 @@ class KendaraanController extends Controller
 
     public function pesan($id, $invoice)
     {
-        $kendaraan = Kendaraan::find($id)->first();
+        $kendaraan = Kendaraan::where('id', $id)->first();
         $invoice2 = Pesanan::where('invoice', $invoice)->first();
         $invoice3 = '';
 

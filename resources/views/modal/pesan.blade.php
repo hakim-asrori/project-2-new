@@ -45,8 +45,9 @@
             invoiceCell.innerHTML = val['invoice']; 
             namaCell.innerHTML = val['penyewa']; 
             kendaraanCell.innerHTML = val['kendaraan']; 
-            teleponCell.innerHTML = '<a href="https://api.whatsapp.com/send?phone='+ val['telepon'] +'&text=Pesan dari App Silihin%0A%0ADari : {!!Session::get('logged_in')['nama_lengkap']!!}%0AIsi Pesan : " class="btn btn-primary" target="_blank">WA Me</a>';
-            aksiCell.innerHTML = "lorem";
+            teleponCell.innerHTML = '<a href="https://api.whatsapp.com/send?phone='+ val['telepon'] +'&text=Pesan dari App Silihin%0A%0ADari : {!!Session::get('logged_in')['nama_lengkap']!!}%0AIsi Pesan : " class="btn btn-primary" target="_blank">Whatsapp</a>';
+            aksiCell.innerHTML = '<button class="btn btn-2primary" style="margin-right: .5rem">Selesai?</button>';
+            aksiCell.innerHTML += '<button class="btn btn-primary">Batal</button>';
           }
         }
       }
