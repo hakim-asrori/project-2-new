@@ -10,6 +10,7 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -68,4 +69,9 @@ Route::prefix('get')->group(function () {
 	Route::get('/kendaraan-all', [AjaxController::class, 'getAllKendaraan']);
 	Route::get('/kendaraan-by-{id}', [AjaxController::class, 'getByKendaraanId']);
 	Route::post('/kendaraan-by', [AjaxController::class, 'getByKendaraan']);
+});
+
+Route::get('test', function () {
+	$data = mt_rand(1000, 9999);
+	echo QrCode::size(300)->format('svg')->generate($data);
 });
