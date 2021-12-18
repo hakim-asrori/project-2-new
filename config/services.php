@@ -36,4 +36,10 @@ return [
         'redirect'      => env('GOOGLE_URL', 'http://127.0.0.1:8000/auth/google/callback'),
     ],
 
+    'twilio' => [
+        'sid' => 'AC9cbc525487bdcdb2bd96f29efe8f31fb',
+        'token' => '768790ab9a106988d5abaf3bb71f59ab',
+        'whatsapp_from' => '083862169726'
+    ],
+
 ];

@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
-        "simplesoftwareio/simple-qrcode": "^4.2"
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "twilio/sdk": "^6.32"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -29,7 +30,8 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/helpers/Number.php"
+            "app/helpers/Number.php",
+            "app/helpers/WhatsApp.php"
         ]
     },
     "autoload-dev": {

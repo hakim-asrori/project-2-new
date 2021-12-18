@@ -18,7 +18,7 @@
 
     <script src="/assets/front/js/jquery-3.3.1.min.js"></script>
     <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/assets/sweetalert/dist/sweetalert.min.js"></script>
     <style>
     html {
         scroll-behavior: smooth;
@@ -65,6 +65,7 @@
             </div>
         </div>
         @include('modal.detail')
+        @include('modal.inputpesanan')
         @include('layout.footer')
     </div>
 

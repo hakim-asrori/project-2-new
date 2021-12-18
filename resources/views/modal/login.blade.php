@@ -5,7 +5,7 @@
                 <div class="login-block">
                     <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
                     <div class="login-block-header text-center">
-                        <img src="https://plazafood.id/assets/front/images/food.svg" alt="Login" class="d-icon">Login
+                        <img src="/assets/front/images/food.svg" alt="Login" class="d-icon">Login
                     </div>
                     <form action="/auth/login" name="login_form" id="login_form" class="form-horizontal" method="post" accept-charset="utf-8">
                         @csrf

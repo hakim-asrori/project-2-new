@@ -104,7 +104,7 @@ class KendaraanController extends Controller
         }
     }
 
-    public function pesan($id, $invoice)
+    public function pesan(Request $request, $id, $invoice)
     {
         $kendaraan = Kendaraan::where('id', $id)->first();
         $invoice2 = Pesanan::where('invoice', $invoice)->first();
@@ -116,13 +116,22 @@ class KendaraanController extends Controller
             $invoice3 = $invoice;
         }
 
-        Pesanan::create([
+        $cek = Pesanan::create([
             'id_user' => Session::get('logged_in')['id'],
             'id_kendaraan' => $kendaraan->id,
-            'invoice' => $invoice3
+            'dari' => $request->dari,
+            'tujuan' => $request->tujuan,
+            'invoice' => $invoice3,
+            'hari' => $request->hari
         ]);
 
-        echo "<script>location.href='https://api.whatsapp.com/send?phone=".$kendaraan->user->telepon."&text=Order Lewat App Silihin %0A%0ADari : ".Session::get('logged_in')['nama_lengkap']."%0AInvoice: ".$invoice3."%0ANama Kendaraan: ".$kendaraan->nama_kendaraan."%0AHarga: Rp. ".rupiah($kendaraan->harga)."%0A%0ASilahkan tanyakan jika ada kebutuhan lainnya...'</script>";
+        if ($cek) {
+            echo 1;
+        } else {
+            echo 2;
+        }
+
+        // WaSend($kendaraan->user->telepon, Session::get('logged_in')['nama_lengkap'], $invoice3, $kendaraan->nama_kendaraan, rupiah($kendaraan->harga), $request->dari, $request->tujuan, $request->hari);
     }
 
 

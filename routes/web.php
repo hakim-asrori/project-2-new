@@ -10,7 +10,8 @@ use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AjaxController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\PinjamanController;
+use App\Http\Controllers\PenyewaanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +51,7 @@ Route::get('/get/kendaraan-by-user', [KendaraanController::class, 'getByKendaraa
 Route::prefix('pesanan')->group(function() {
 	Route::get('/', [PesananController::class, 'index'])->middleware('otentikasi');
 	Route::post('/', [PesananController::class, 'store'])->middleware('otentikasi');
-	Route::get('/get-all', [PesananController::class, 'getall'])->middleware('otentikasi');
+	Route::get('/get-all-pemilik', [PesananController::class, 'getallpemilik'])->middleware('otentikasi');
 });
 
 // Route Profile
@@ -71,7 +72,17 @@ Route::prefix('get')->group(function () {
 	Route::post('/kendaraan-by', [AjaxController::class, 'getByKendaraan']);
 });
 
-Route::get('test', function () {
-	$data = mt_rand(1000, 9999);
-	echo QrCode::size(300)->format('svg')->generate($data);
+Route::prefix('pinjaman')->group(function () {
+	Route::get('/', [PinjamanController::class, 'index'])->middleware('otentikasi');
+	Route::get('/kendaraan-by-me', [PinjamanController::class, 'showall'])->middleware('otentikasi');
+	Route::get('/kendaraan-by-me/tolak', [PinjamanController::class, 'tolakcount'])->middleware('otentikasi');
+	Route::get('/kendaraan-by-me/selesai', [PinjamanController::class, 'selesaicount'])->middleware('otentikasi');
+	Route::patch('/tolak', [PinjamanController::class, 'tolak'])->middleware('otentikasi');
+	Route::patch('/setuju', [PinjamanController::class, 'setuju'])->middleware('otentikasi');
+	Route::patch('/selesai', [PinjamanController::class, 'selesai'])->middleware('otentikasi');
+});
+
+Route::prefix('penyewaan')->group(function () {
+	Route::get('/', [PenyewaanController::class, 'index'])->middleware('otentikasi');
+	Route::get('/kendaraan-by-me', [PenyewaanController::class, 'showall'])->middleware('otentikasi');
 });

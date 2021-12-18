@@ -33,17 +33,17 @@ class AuthController extends Controller
 
 		if ($user) {
 			if ($user->google_id == null) {
-				return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Harap aktivasi email terlebih dahulu!', 'error')</script>");
+				return redirect('/')->with('message', "<script>swal('Ooops', 'Harap aktivasi email terlebih dahulu!', 'error')</script>");
 			} else {
 				if (password_verify($password, $user->password)) {
 					Session::put('logged_in', $user);
-					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Berhasil login!', 'success')</script>");
+					return redirect('/')->with('message', "<script>swal('Wooww', 'Berhasil login!', 'success')</script>");
 				} else {
-					return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Password salah!', 'error')</script>");
+					return redirect('/')->with('message', "<script>swal('Ooops', 'Password salah!', 'error')</script>");
 				}
 			}
 		} else {
-			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun tidak terdaftar!', 'error')</script>");
+			return redirect('/')->with('message', "<script>swal('Ooops', 'Akun tidak terdaftar!', 'error')</script>");
 		}
 	}
 
@@ -77,11 +77,11 @@ class AuthController extends Controller
 				'telepon' => $telepon
 			]);
 
-			$this->_sendEmail($token, 'verify');
+			// $this->_sendEmail($token, 'verify');
 
-			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Registrasi sukses, harap periksa email anda!', 'success')</script>");
+			return redirect('/')->with('message', "<script>swal('Wooww', 'Registrasi sukses, harap periksa email anda!', 'success')</script>");
 		} else {
-			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun sudah terdaftar!', 'error')</script>");
+			return redirect('/')->with('message', "<script>swal('Ooops', 'Akun sudah terdaftar!', 'error')</script>");
 		}
 	}
 
@@ -103,15 +103,15 @@ class AuthController extends Controller
 
 					PasswordReset::where('email', $user_token->email)->delete();
 
-					return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Akun berhasil terverifikasi, silahkan login.', 'success')</script>");
+					return redirect('/')->with('message', "<script>swal('Wooww', 'Akun berhasil terverifikasi, silahkan login.', 'success')</script>");
 				} else {
-					return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, token expired!', 'error')</script>");
+					return redirect('/')->with('message', "<script>swal('Ooops', 'Akun gagal verifikasi, token expired!', 'error')</script>");
 				}
 			} else {
-				return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, token salah!', 'error')</script>");
+				return redirect('/')->with('message', "<script>swal('Ooops', 'Akun gagal verifikasi, token salah!', 'error')</script>");
 			}
 		} else {
-			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, email salah!', 'error')</script>");
+			return redirect('/')->with('message', "<script>swal('Ooops', 'Akun gagal verifikasi, email salah!', 'error')</script>");
 		}
 	}
 
@@ -130,9 +130,9 @@ class AuthController extends Controller
 
 			$this->_sendEmail($token, 'forgot');
 
-			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Reset password berhasil, silahkan lihat email anda.', 'success')</script>");
+			return redirect('/')->with('message', "<script>swal('Wooww', 'Reset password berhasil, silahkan lihat email anda.', 'success')</script>");
 		} else {
-			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Email tidak terdaftar!', 'error')</script>");
+			return redirect('/')->with('message', "<script>swal('Ooops', 'Email tidak terdaftar!', 'error')</script>");
 		}
 	}
 
@@ -149,10 +149,10 @@ class AuthController extends Controller
 			if ($user_token) {
 				return view('mail.reset_form', compact("user"));
 			} else {
-				return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, token salah!', 'error')</script>");
+				return redirect('/')->with('message', "<script>swal('Ooops', 'Akun gagal verifikasi, token salah!', 'error')</script>");
 			}
 		} else {
-			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Akun gagal verifikasi, email salah!', 'error')</script>");
+			return redirect('/')->with('message', "<script>swal('Ooops', 'Akun gagal verifikasi, email salah!', 'error')</script>");
 		}
 	}
 
@@ -163,7 +163,7 @@ class AuthController extends Controller
 		} elseif ($type == "forgot") {
 			\Mail::to($_POST['email'])->send(new \App\Mail\Resetmail($token));
 		} else {
-			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Error.', 'error')</script>");
+			return redirect('/')->with('message', "<script>swal('Ooops', 'Error.', 'error')</script>");
 		}
 	}
 

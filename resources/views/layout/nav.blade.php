@@ -24,9 +24,10 @@ use Illuminate\Support\Facades\Session;
                             <?php
                             if (Session::get('logged_in')) {
                                 $user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();?>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/kendaraan">Kendaraan</a></li>
-                                <li><a href="/pesanan">Pesanan</a></li>
+                                <li><a href="/">Dashboard</a></li>
+                                <li><a href="/kendaraan">Kendaraan Saya</a></li>
+                                <li><a href="/pinjaman">Pinjaman Saya</a></li>
+                                <li><a href="/penyewaan">Sewaan Saya</a></li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" type="button" data-toggle="dropdown"><img src="{!! ($user->image=='') ? '/assets/front/images/user.png' : '/storage/' . $user->image !!}" class="nav-profile-img" alt="<?= $user->nama_lengkap ?>"> <?= $user->nama_lengkap ?>
                                         <span class="fa fa-angle-down"></span>

@@ -52,14 +52,14 @@ class PesananController extends Controller
 
     }
 
-    public function getAll()
+    public function getAllPemilik()
     {
         $kendaraan = Kendaraan::where('id_user', Session::get('logged_in')['id'])->get();
 
         $data = array();
 
         foreach ($kendaraan as $k) {
-            $pesanan = Pesanan::where('id_kendaraan', $k->id)->where('persetujuan', 1)->get();
+            $pesanan = Pesanan::where('id_kendaraan', $k->id)->get();
 
             foreach ($pesanan as $p) {
                 $data[] = array(

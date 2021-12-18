@@ -18,6 +18,9 @@ class CreatePesanansTable extends Migration
             $table->integer('id_user');
             $table->integer('id_kendaraan');
             $table->string('invoice');
+            $table->string('dari');
+            $table->string('tujuan');
+            $table->integer('hari');
             $table->integer('persetujuan')->nullable();
             $table->integer('selesai')->nullable();
             $table->timestamps();

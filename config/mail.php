@@ -51,7 +51,7 @@ return [
             'port' => 587,
             'encryption' => 'tls',
             'username' => 'saneglos005@gmail.com',
-            'password' => 'saneglos005@gmail.c',
+            'password' => 'Saneglos123!',
             'timeout' => null,
             'auth_mode' => null,
         ],

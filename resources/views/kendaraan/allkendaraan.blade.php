@@ -7,7 +7,7 @@ foreach($kendaraan as $k) {
 				<img src="/storage/{!! $k->gambar !!}" alt="{!! $k->nama_kendaraan !!}" class="img-responsive" title="{!! $k->nama_kendaraan !!}" data-toggle="modal" data-target="#detail-modal" data-id="{!! $k->id !!}" id="detail">
 				<div class="cs-card-content clearfix">
 					<div class="pull-left" data-toggle="modal" data-target="#detail-modal" data-id="{!! $k->id !!}" id="detail">
-						<h4 title="[ {!! $k->user->nama_lengkap !!} ] {!! $k->nama_kendaraan !!}">[ {!! $k->user->nama_lengkap !!} ] {!! $k->nama_kendaraan !!}</h4>
+						<h4 title="{!! $k->nama_kendaraan !!} - [ {!! $k->user->nama_lengkap !!} ]">{!! $k->nama_kendaraan !!} - [ {!! $k->user->nama_lengkap !!} ]</h4>
 						<p>Rp. {!! rupiah($k->harga) !!}</p>
 						<p>Jumlah {!! $k->jumlah !!}</p>
 					</div>
@@ -16,10 +16,11 @@ foreach($kendaraan as $k) {
 						<?php 
 						if (Session::get('logged_in')) { 
 							if (Session::get('logged_in')['id'] != $k->id_user) { ?>
-								<form action="/kendaraan/{!! $k->id !!}/pesan_{!! $invoice !!}" method="post">
+								<button class="btn btn-sm btn-round btn-primary card-btn" data-toggle="modal" data-target="#inputpesanan-modal" data-id="{!! $k->id !!}" data-invoice="pesan_{{ $invoice }}" id="pesan">Pesan</button>
+								<!-- <form action="/kendaraan/{!! $k->id !!}/pesan_{!! $invoice !!}" method="post">
 									@csrf
 									<button class="btn btn-sm btn-round btn-primary card-btn">Pesan</button>
-								</form>
+								</form> -->
 							<?php } ?>
 							<?php 
 						} else { ?>
@@ -32,4 +33,4 @@ foreach($kendaraan as $k) {
 			</div>
 		</div>
 	<?php } ?>
-<?php } ?>
+	<?php } ?>

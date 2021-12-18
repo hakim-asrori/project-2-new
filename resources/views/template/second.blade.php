@@ -18,14 +18,15 @@
 
     <script src="/assets/front/js/jquery-3.3.1.min.js"></script>
     <!-- <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script> -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/assets/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
     <script type="text/javascript" src="/assets/site/js/jquery.validate.min.js"></script>
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
 
 </head>
 
