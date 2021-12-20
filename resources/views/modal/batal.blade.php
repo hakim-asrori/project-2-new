@@ -38,10 +38,10 @@
           success: function (response) {
             if (response == 1) {
               swal('Wooww!', 'Data berhasil disimpan', 'success');
+              $("#batal-modal").modal('hide');
               loadPesanan();
               loadPesananTolak();
               loadPesananSetuju();
-              $("#batal-modal").modal('hide');
             } else {
               swal('Ooops!', 'Data gagal disimpan', 'error');
             }

@@ -77,7 +77,7 @@ class AuthController extends Controller
 				'telepon' => $telepon
 			]);
 
-			// $this->_sendEmail($token, 'verify');
+			$this->_sendEmail($token, 'verify');
 
 			return redirect('/')->with('message', "<script>swal('Wooww', 'Registrasi sukses, harap periksa email anda!', 'success')</script>");
 		} else {

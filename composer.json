@@ -29,9 +29,9 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
         },
-        "files": [
-            "app/helpers/Number.php",
-            "app/helpers/WhatsApp.php"
+	"files": [
+            "app/Helpers/Number.php",
+            "app/Helpers/WhatsApp.php"
         ]
     },
     "autoload-dev": {
