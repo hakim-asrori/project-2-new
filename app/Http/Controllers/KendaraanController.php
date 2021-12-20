@@ -117,7 +117,8 @@ class KendaraanController extends Controller
         }
 
         $cek = Pesanan::create([
-            'id_user' => Session::get('logged_in')['id'],
+            'id_peminjam' => $kendaraan->id_user,
+            'id_penyewa' => Session::get('logged_in')['id'],
             'id_kendaraan' => $kendaraan->id,
             'dari' => $request->dari,
             'tujuan' => $request->tujuan,

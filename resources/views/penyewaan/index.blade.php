@@ -61,7 +61,7 @@
 						} else if (val['persetujuan'] == 2) {
 							aksiCell.innerHTML = '<span class="badge btn-primary">Ditolak</span>'
 						} else {
-							aksiCell.innerHTML = '<button class="btn btn-primary mr-3" data-id="'+val['invoice']+'" id="batal" data-toggle="modal" data-target="#batal-modal">Batal</button>'
+							aksiCell.innerHTML = '<button class="btn btn-primary mr-3" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="batal" data-toggle="modal" data-target="#batal-modal">Batal</button>'
 						}
 					}
 				}

@@ -105,11 +105,11 @@
 						teleponCell.innerHTML = '<a class="btn btn-2primary" href="https://api.whatsapp.com/send?phone='+val['telepon']+'&text=Ada pesan dari admin silihin.co.vu%0A%0ANama : {{ Session::get("logged_in")["nama_lengkap"] }}%0AInvoice : '+val['invoice']+'%0AYang Punya : '+val['kendaraan']+'">WhatsApp</a>';
 						if (val['persetujuan'] == 1) {
 							aksiCell.innerHTML = '<span class="badge btn-2success mr-3">Setuju</span> | ';
-							aksiCell.innerHTML += '<button class="btn btn-2primary mx-3" data-id="'+val['invoice']+'" id="selesai" data-toggle="modal" data-target="#selesai-modal">Selesai?</button>'
-							aksiCell.innerHTML += '<button class="btn btn-primary mr-3" data-id="'+val['invoice']+'" id="batal" data-toggle="modal" data-target="#batal-modal">Batal</button>'
+							aksiCell.innerHTML += '<button class="btn btn-2primary mx-3" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="selesai" data-toggle="modal" data-target="#selesai-modal">Selesai?</button>'
+							aksiCell.innerHTML += '<button class="btn btn-primary mr-3" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="batal" data-toggle="modal" data-target="#batal-modal">Batal</button>'
 						} else {
-							aksiCell.innerHTML = '<button class="btn btn-2primary mr-3" data-id="'+val['invoice']+'" id="setuju" data-toggle="modal" data-target="#setuju-modal">Setuju</button>'
-							aksiCell.innerHTML += '<button class="btn btn-primary" data-id="'+val['invoice']+'" id="tolak" data-toggle="modal" data-target="#tolak-modal">Tolak</button>'
+							aksiCell.innerHTML = '<button class="btn btn-2primary mr-3" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="setuju" data-toggle="modal" data-target="#setuju-modal">Setuju</button>'
+							aksiCell.innerHTML += '<button class="btn btn-primary" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="tolak" data-toggle="modal" data-target="#tolak-modal">Tolak</button>'
 						}
 					}
 				}
@@ -180,14 +180,18 @@
 
 		$("body").on('click', '#setuju', function () {
 			let invoice = $(this).data('id');
+			let kendaraan = $(this).data('kendaraan');
 
 			$('#invoiceSetuju').val(invoice);
+			$('#kendaraanSetuju').val(kendaraan);
 		})
 
 		$("body").on('click', '#tolak', function () {
 			let invoice = $(this).data('id');
+			let kendaraan = $(this).data('kendaraan');
 			
 			$('#invoiceTolak').val(invoice);
+			$('#kendaraanTolak').val(kendaraan);
 		})
 	})
 </script>

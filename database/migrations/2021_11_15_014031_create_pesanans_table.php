@@ -15,7 +15,8 @@ class CreatePesanansTable extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user');
+            $table->integer('id_peminjam');
+            $table->integer('id_penyewa');
             $table->integer('id_kendaraan');
             $table->string('invoice');
             $table->string('dari');

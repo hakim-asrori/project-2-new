@@ -30,10 +30,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 'google' => [
+    //     'client_id'     => env('GOOGLE_ID', '510836180007-jsfpmqanltmp8kr5rjibe1k3v1tbo7h1.apps.googleusercontent.com'),
+    //     'client_secret' => env('GOOGLE_SECRET', '0BOe7AsiXr5tedgbKf2g_wJO'),
+    //     'redirect'      => env('GOOGLE_URL', 'http://silihin.co.vu/auth/google/callback'),
+    // ],
+
     'google' => [
-        'client_id'     => env('GOOGLE_ID', '510836180007-jsfpmqanltmp8kr5rjibe1k3v1tbo7h1.apps.googleusercontent.com'),
-        'client_secret' => env('GOOGLE_SECRET', '0BOe7AsiXr5tedgbKf2g_wJO'),
-        'redirect'      => env('GOOGLE_URL', 'http://silihin.co.vu/auth/google/callback'),
+        'client_id'     => env('GOOGLE_ID', '510836180007-255gactlsrvnlfjih36op1if4ijdomkj.apps.googleusercontent.com'),
+        'client_secret' => env('GOOGLE_SECRET', 'NryGCPlVseDRQikWwL4nV9XK'),
+        'redirect'      => env('GOOGLE_URL', 'http://127.0.0.1:8000/auth/google/callback'),
     ],
 
     'twilio' => [

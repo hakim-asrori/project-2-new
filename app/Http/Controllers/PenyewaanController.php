@@ -16,12 +16,14 @@ class PenyewaanController extends Controller
 
     public function showall()
     {
-        $pesanan = Pesanan::where('id_user', Session::get('logged_in')['id'])->where('persetujuan', null)->orwhere('persetujuan', 1)->where('selesai', null)->get();
+        // dd(Session::get('logged_in')['id']);
+        $pesanan = Pesanan::where('id_penyewa', Session::get('logged_in')['id'])->where('persetujuan', null)->orwhere('persetujuan', 1)->where('selesai', null)->get();
 
         $data = array();
 
         foreach ($pesanan as $p) {
             $data[] = array(
+                'id_kendaraan' => $p->id_kendaraan,
                 'invoice' => $p->invoice,
                 'nama' => $p->kendaraan->user->nama_lengkap,
                 'kendaraan' => $p->kendaraan->nama_kendaraan,

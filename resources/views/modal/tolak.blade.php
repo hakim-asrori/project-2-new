@@ -15,6 +15,7 @@
 
           <div class="form-group">
             <input type="hidden" id="invoiceTolak">
+            <input type="hidden" id="kendaraanTolak">
             <button class="btn btn-primary" id="tolakConfirm">Tolak</button>
             <button class="btn btn-2primary" data-dismiss="modal">Kembali</button>
           </div>
@@ -29,12 +30,13 @@
   $(document).ready(function () {
     $("body").on('click', '#tolakConfirm', function () {
       let invoice = $("#invoiceTolak").val().trim();
+      let kendaraan = $("#kendaraanTolak").val().trim();
 
       if (invoice) {
         $.ajax({
           url: '/pinjaman/tolak',
           type: 'post',
-          data: {invoice: invoice, _method: 'patch'},
+          data: {invoice: invoice, kendaraan: kendaraan, _method: 'patch'},
           success: function (response) {
             if (response == 1) {
               swal('Wooww!', 'Data berhasil disimpan', 'success');
