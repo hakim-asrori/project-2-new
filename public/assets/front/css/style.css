@@ -3611,7 +3611,7 @@ font-size: 14px;
                     }
                     .cs-searchbox .search-innerwrapper input :hover,.cs-searchbox .search-innerwrapper input :focus{border-color: #dc3432;box-shadow: none;}
                     @media(max-width:600px){
-                        .cs-searchbox .search-innerwrapper input{width: 100px}
+                        /*.cs-searchbox .search-innerwrapper input{width: 100px}*/
                         .table-card .card-header{font-size: .9rem;padding: .75rem}
                     }
                     .cs-searchbox .search-innerwrapper i {

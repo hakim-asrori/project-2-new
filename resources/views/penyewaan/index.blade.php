@@ -55,7 +55,7 @@
 						invoiceCell.innerHTML = val['invoice'];
 						namaCell.innerHTML = val['nama'];
 						kendaraanCell.innerHTML = val['kendaraan'];
-						teleponCell.innerHTML = val['telepon'];
+						teleponCell.innerHTML = '<a class="btn btn-2primary" href="https://api.whatsapp.com/send?phone='+val['telepon']+'&text=Ada pesan dari customer silihin.co.vu%0A%0ANama : {{ Session::get("logged_in")["nama_lengkap"] }}%0AInvoice : '+val['invoice']+'%0APenyewa : '+val['kendaraan']+'">WhatsApp</a>';
 						if (val['persetujuan'] == 1) {
 							aksiCell.innerHTML = '<span class="badge btn-2success">Disetujui</span>'
 						} else if (val['persetujuan'] == 2) {

@@ -102,7 +102,7 @@
 						invoiceCell.innerHTML = val['invoice'];
 						namaCell.innerHTML = val['penyewa'];
 						kendaraanCell.innerHTML = val['kendaraan'];
-						teleponCell.innerHTML = val['telepon'];
+						teleponCell.innerHTML = '<a class="btn btn-2primary" href="https://api.whatsapp.com/send?phone='+val['telepon']+'&text=Ada pesan dari admin silihin.co.vu%0A%0ANama : {{ Session::get("logged_in")["nama_lengkap"] }}%0AInvoice : '+val['invoice']+'%0AYang Punya : '+val['kendaraan']+'">WhatsApp</a>';
 						if (val['persetujuan'] == 1) {
 							aksiCell.innerHTML = '<span class="badge btn-2success mr-3">Setuju</span> | ';
 							aksiCell.innerHTML += '<button class="btn btn-2primary mx-3" data-id="'+val['invoice']+'" id="selesai" data-toggle="modal" data-target="#selesai-modal">Selesai?</button>'
