@@ -109,7 +109,7 @@
 							aksiCell.innerHTML += '<button class="btn btn-primary mr-3" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="batal" data-toggle="modal" data-target="#batal-modal">Batal</button>'
 						} else {
 							aksiCell.innerHTML = '<button class="btn btn-2primary mr-3" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="setuju" data-toggle="modal" data-target="#setuju-modal">Setuju</button>'
-							aksiCell.innerHTML += '<button class="btn btn-primary" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="tolak" data-toggle="modal" data-target="#tolak-modal">Tolak</button>'
+							aksiCell.innerHTML += '<button class="btn btn-primary" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="tolak" data-toggle="modal" data-target="#tolak-modal">Batal</button>'
 						}
 					}
 				}

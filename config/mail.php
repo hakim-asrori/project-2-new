@@ -40,8 +40,8 @@ return [
         //     'host' => env('MAIL_HOST', 'smtp.gmail.com'),
         //     'port' => env('MAIL_PORT', 587),
         //     'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-        //     'username' => env('MAIL_USERNAME', 'saneglos005@gmail.com'),
-        //     'password' => env('MAIL_PASSWORD', 'saneglos005@gmail.c'),
+        //     'username' => env('MAIL_USERNAME', 'hakimasrori20@student.polindra.ac.id'),
+        //     'password' => env('MAIL_PASSWORD', 'Hakim123!'),
         //     'timeout' => null,
         //     'auth_mode' => null,
         // ],
@@ -55,6 +55,16 @@ return [
             'timeout' => null,
             'auth_mode' => null,
         ],
+        // 'smtp' => [
+        //     'transport' => 'smtp',
+        //     'host' => 'smtp.gmail.com',
+        //     'port' => 587,
+        //     'encryption' => 'tls',
+        //     'username' => 'hakimasrori20@student.polindra.ac.id',
+        //     'password' => 'Hakim123!',
+        //     'timeout' => null,
+        //     'auth_mode' => null,
+        // ],
 
         'ses' => [
             'transport' => 'ses',

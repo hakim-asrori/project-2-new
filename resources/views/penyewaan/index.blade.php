@@ -59,7 +59,7 @@
 						if (val['persetujuan'] == 1) {
 							aksiCell.innerHTML = '<span class="badge btn-2success">Disetujui</span>'
 						} else if (val['persetujuan'] == 2) {
-							aksiCell.innerHTML = '<span class="badge btn-primary">Ditolak</span>'
+							aksiCell.innerHTML = '<span class="badge btn-primary">Batal</span>'
 						} else {
 							aksiCell.innerHTML = '<button class="btn btn-primary mr-3" data-id="'+val['invoice']+'" data-kendaraan="'+val['id_kendaraan']+'" id="batal" data-toggle="modal" data-target="#batal-modal">Batal</button>'
 						}

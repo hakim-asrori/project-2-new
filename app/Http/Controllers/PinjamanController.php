@@ -20,18 +20,38 @@ class PinjamanController extends Controller
     {
         $data = array();
         // dd(Session::get('logged_in')['id']);
-        $pesanan = Pesanan::where('id_peminjam', Session::get('logged_in')['id'])->where('persetujuan', 1)->where('selesai', null)->orwhere('persetujuan', NULL)->get();
+        $pesanan = Pesanan::where('id_peminjam', Session::get('logged_in')['id'])
+                        // ->orwhere('persetujuan', NULL)
+                        // ->where('persetujuan', 1)
+                        // ->where('selesai', null)
+                        ->get();
 
         foreach ($pesanan as $p) {
-            $user = User::where('id', Session::get('logged_in')['id'])->first();
-            $data[] = array(
-                'id_kendaraan' => $p->id_kendaraan,
-                'invoice' => $p->invoice,
-                'penyewa' => $user->nama_lengkap,
-                'kendaraan' => $p->kendaraan->nama_kendaraan,
-                'telepon' => $user->telepon,
-                'persetujuan' => $p->persetujuan
-            );
+            if ($p->persetujuan == null) {
+                $data[] = array(
+                    'id_kendaraan' => $p->id_kendaraan,
+                    'invoice' => $p->invoice,
+                    'penyewa' => $p->penyewa->nama_lengkap,
+                    'kendaraan' => $p->kendaraan->nama_kendaraan,
+                    'telepon' => $p->penyewa->telepon,
+                    'persetujuan' => $p->persetujuan,
+                    'selesai' => $p->selesai
+                );
+            } elseif ($p->persetujuan == 1 && $p->selesai == 1) {
+                
+            } elseif ($p->persetujuan == 2) {
+                
+            } elseif ($p->selesai == null) {
+                $data[] = array(
+                    'id_kendaraan' => $p->id_kendaraan,
+                    'invoice' => $p->invoice,
+                    'penyewa' => $p->penyewa->nama_lengkap,
+                    'kendaraan' => $p->kendaraan->nama_kendaraan,
+                    'telepon' => $p->penyewa->telepon,
+                    'persetujuan' => $p->persetujuan,
+                    'selesai' => $p->selesai
+                );
+            }
         }
 
         return response()->json($data);

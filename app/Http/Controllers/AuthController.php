@@ -72,14 +72,15 @@ class AuthController extends Controller
 
 			User::create([
 				'nama_lengkap' => $nama_lengkap,
+				'google_id' => 1,
 				'email' => $email,
 				'password' => $password,
-				'telepon' => $telepon
+				'telepon' => $telepon,
 			]);
 
-			$this->_sendEmail($token, 'verify');
+			// $this->_sendEmail($token, 'verify');
 
-			return redirect('/')->with('message', "<script>swal('Wooww', 'Registrasi sukses, harap periksa email anda!', 'success')</script>");
+			return redirect('/')->with('message', "<script>swal('Wooww', 'Registrasi sukses, silahkan login!', 'success')</script>");
 		} else {
 			return redirect('/')->with('message', "<script>swal('Ooops', 'Akun sudah terdaftar!', 'error')</script>");
 		}

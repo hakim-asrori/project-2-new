@@ -7,7 +7,7 @@
     <meta name="keywords" content="Foodcourt">
     <meta name="description" content="">
 
-    <title>Silihin :: @yield('title', "Home")</title>
+    <title>Silihin ::</title>
 
 
     <link href="/assets/front/css/main.css" rel="stylesheet">
@@ -31,15 +31,17 @@
 </head>
 
 <body>
-    <?php
-    $user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();
-    ?>
-    <?php if ($user->telepon=='' && $user->alamat==''): ?>
-        <script src="/assets/front/js/bootstrap.min.js"></script>
-        @include('modal.profile')
-        <script>
-            $("#telepon-modal").modal("show")
-        </script>
+    <?php if (Session::get('logged_in')): ?>
+        <?php
+        $user = DB::table('users')->where('email', Session::get('logged_in')['email'])->first();
+        ?>
+        <?php if ($user->telepon=='' && $user->alamat==''): ?>
+            <script src="/assets/front/js/bootstrap.min.js"></script>
+            @include('modal.profile')
+            <script>
+                $("#profile-modal").modal("show")
+            </script>
+        <?php endif ?>
     <?php endif ?>
 
     <?php if (session('message')): ?>

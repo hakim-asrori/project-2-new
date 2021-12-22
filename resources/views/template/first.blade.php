@@ -7,7 +7,7 @@
     <meta name="keywords" content="Foodcourt">
     <meta name="description" content="">
 
-    <title>Silihin :: @yield('title', "Home")</title>
+    <title>Silihin :: </title>
 
 
     <link href="/assets/front/css/main.css" rel="stylesheet">

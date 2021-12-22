@@ -11,9 +11,14 @@ class Pesanan extends Model
 
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function user()
+    public function peminjam()
     {
-        return $this->hasOne(User::class, 'id', 'id_user');
+        return $this->hasOne(User::class, 'id', 'id_peminjam');
+    }
+
+    public function penyewa()
+    {
+        return $this->hasOne(User::class, 'id', 'id_penyewa');
     }
 
     public function kendaraan()
