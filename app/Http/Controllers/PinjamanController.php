@@ -33,7 +33,9 @@ class PinjamanController extends Controller
                     'invoice' => $p->invoice,
                     'penyewa' => $p->penyewa->nama_lengkap,
                     'kendaraan' => $p->kendaraan->nama_kendaraan,
+                    'total' => 'Rp. '.rupiah($p->kendaraan->harga * $p->hari),
                     'telepon' => $p->penyewa->telepon,
+                    'tujuan' => $p->dari.' - '. $p->tujuan,
                     'persetujuan' => $p->persetujuan,
                     'selesai' => $p->selesai
                 );
@@ -47,7 +49,9 @@ class PinjamanController extends Controller
                     'invoice' => $p->invoice,
                     'penyewa' => $p->penyewa->nama_lengkap,
                     'kendaraan' => $p->kendaraan->nama_kendaraan,
+                    'total' => 'Rp. '.rupiah($p->kendaraan->harga * $p->hari),
                     'telepon' => $p->penyewa->telepon,
+                    'tujuan' => $p->dari.' - '. $p->tujuan,
                     'persetujuan' => $p->persetujuan,
                     'selesai' => $p->selesai
                 );

@@ -30,7 +30,9 @@ class PenyewaanController extends Controller
                     'id_kendaraan' => $p->id_kendaraan,
                     'invoice' => $p->invoice,
                     'nama' => $p->peminjam->nama_lengkap,
+                    'total' => 'Rp. '.rupiah($p->kendaraan->harga * $p->hari),
                     'kendaraan' => $p->kendaraan->nama_kendaraan,
+                    'tujuan' => $p->dari.' - '. $p->tujuan,
                     'telepon' => $p->peminjam->telepon,
                     'persetujuan' => $p->persetujuan
                 );

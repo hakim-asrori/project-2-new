@@ -16,7 +16,9 @@
 					<tr>
 						<th>Invoice</th>
 						<th>Nama</th>
+						<th>Total</th>
 						<th>Kendaraan</th>
+						<th>Tujuan</th>
 						<th>No. WA</th>
 						<th>Aksi</th>
 					</tr>
@@ -95,13 +97,17 @@
 						let newRow = empTable.insertRow(0); 
 						let invoiceCell = newRow.insertCell(0);
 						let namaCell = newRow.insertCell(1);
-						let kendaraanCell = newRow.insertCell(2);
-						let teleponCell = newRow.insertCell(3);
-						let aksiCell = newRow.insertCell(4);
+						let totalCell = newRow.insertCell(2);
+						let kendaraanCell = newRow.insertCell(3);
+						let tujuanCell = newRow.insertCell(4);
+						let teleponCell = newRow.insertCell(5);
+						let aksiCell = newRow.insertCell(6);
 
 						invoiceCell.innerHTML = val['invoice'];
 						namaCell.innerHTML = val['penyewa'];
+						totalCell.innerHTML = val['total'];
 						kendaraanCell.innerHTML = val['kendaraan'];
+						tujuanCell.innerHTML = val['tujuan'];
 						teleponCell.innerHTML = '<a class="btn btn-2primary" href="https://api.whatsapp.com/send?phone='+val['telepon']+'&text=Ada pesan dari admin silihin.co.vu%0A%0ANama : {{ Session::get("logged_in")["nama_lengkap"] }}%0AInvoice : '+val['invoice']+'%0AYang Punya : '+val['kendaraan']+'">WhatsApp</a>';
 						if (val['persetujuan'] == 1) {
 							aksiCell.innerHTML = '<span class="badge btn-2success mr-3">Setuju</span> | ';
